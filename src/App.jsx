@@ -15,6 +15,7 @@ import ManageListings from './pages/ManageListings.jsx'
 import SellerInterest from './pages/SellerInterest.jsx'
 import PremiumUpsell from './pages/PremiumUpsell.jsx'
 import Nav from './components/Nav.jsx'
+import Footer from './components/Footer.jsx'
 
 export const AuthContext = createContext(null)
 
@@ -53,9 +54,9 @@ function AppContent() {
 
   return (
     <AuthContext.Provider value={{ user, login, logout, premium: premiumState, refreshPremium }}>
-      <div className="app-root">
+      <div className="app-root" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Nav />
-        <main className="app-main">
+        <main className="app-main" style={{ flex: 1 }}>
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
@@ -92,6 +93,7 @@ function AppContent() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </AuthContext.Provider>
   )

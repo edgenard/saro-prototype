@@ -64,23 +64,12 @@ export default function Signup() {
   }
 
   return (
-    <div style={{ background: 'var(--gold)', minHeight: 'calc(100vh - 64px)', position: 'relative' }}>
-      {/* Side images hinted */}
-      <div style={{
-        position: 'absolute', left: 0, top: 0, bottom: 0, width: 220,
-        background: 'url(https://picsum.photos/seed/apartment_sign/400/800) center/cover',
-        opacity: 0.35,
-      }} />
-      <div style={{
-        position: 'absolute', right: 0, top: 0, bottom: 0, width: 220,
-        background: 'url(https://picsum.photos/seed/nairobi_building/400/800) center/cover',
-        opacity: 0.35,
-      }} />
+    <div style={{ backgroundImage: `url(${import.meta.env.BASE_URL}get-started-bg.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: 'calc(100vh - 64px)', position: 'relative' }}>
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)' }} />
 
       <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '16px 24px', position: 'relative', zIndex: 1 }}>
         <div style={{ textAlign: 'right' }}>
-          <span className="saro-logo sm">SARO</span>
-          <span className="saro-tagline">Real Estate Simplified</span>
+          <img src={`${import.meta.env.BASE_URL}saro-logo.png`} alt="SARO" style={{ height: '48px', display: 'inline-block' }} />
         </div>
       </div>
 
@@ -91,7 +80,7 @@ export default function Signup() {
           fontSize: '1.3rem',
           textAlign: 'center',
           marginBottom: 28,
-          color: 'var(--black)',
+          color: 'var(--white)',
         }}>
           Sign up and start browsing properties...
         </h2>
@@ -165,14 +154,14 @@ export default function Signup() {
         </form>
 
         <div style={{ textAlign: 'center', marginTop: 16 }}>
-          <span className="text-sm text-muted">Already have an account? </span>
-          <Link to="/login" className="link">Login</Link>
+          <span style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.8)' }}>Already have an account? </span>
+          <Link to="/login" className="link" style={{ color: 'var(--gold)' }}>Login</Link>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: 16, fontSize: '0.9rem', color: 'var(--black)' }}>
-          <Link to="/login" className="link" style={{ fontWeight: 700 }}>Buyer</Link>
-          {' | '}
-          <Link to="/login" className="link" style={{ fontWeight: 700 }}>Seller</Link>
+        <div style={{ textAlign: 'center', marginTop: 16, fontSize: '0.9rem' }}>
+          <Link to="/login" className="link" style={{ fontWeight: 700, color: 'var(--gold)' }}>Buyer</Link>
+          <span style={{ color: 'rgba(255,255,255,0.6)' }}>{' | '}</span>
+          <Link to="/login" className="link" style={{ fontWeight: 700, color: 'var(--gold)' }}>Seller</Link>
         </div>
       </div>
     </div>

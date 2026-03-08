@@ -72,8 +72,7 @@ export default function Login() {
       <div className="split-right">
         <div style={{ maxWidth: 380, width: '100%', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 32 }}>
-            <span className="saro-logo">SARO</span>
-            <span className="saro-tagline">Real Estate Simplified</span>
+            <img src={`${import.meta.env.BASE_URL}saro-logo.png`} alt="SARO" style={{ height: '64px', display: 'inline-block' }} />
           </div>
 
           <h2 style={{ fontFamily: "'Roboto Condensed', sans-serif", fontWeight: 700, fontSize: '1.3rem', textTransform: 'uppercase', textAlign: 'center', marginBottom: 28 }}>

@@ -11,10 +11,6 @@ export default function Landing() {
       {/* Hero split */}
       <div className="split-layout" style={{ minHeight: 'calc(100vh - 64px)' }}>
         <div className="split-left" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <div style={{ marginBottom: 32 }}>
-            <span className="saro-logo lg">SARO</span>
-            <span className="saro-tagline" style={{ fontSize: '1rem', marginTop: 6 }}>Real Estate Simplified</span>
-          </div>
           <h1 style={{
             fontFamily: "'Roboto Condensed', sans-serif",
             fontWeight: 700,
@@ -35,8 +31,9 @@ export default function Landing() {
           </div>
         </div>
 
-        <div className="split-right" style={{ background: 'var(--white)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
-          <div style={{ maxWidth: 420 }}>
+        <div className="split-right" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}landing-bg.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', position: 'relative' }}>
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(255,255,255,0.82)' }} />
+          <div style={{ maxWidth: 420, position: 'relative', zIndex: 1 }}>
             <div style={{ marginBottom: 40 }}>
               <h2 style={{ fontFamily: "'Roboto Condensed', sans-serif", fontWeight: 700, fontSize: '1.5rem', textTransform: 'uppercase', marginBottom: 8 }}>
                 Ready to Buy or Rent?

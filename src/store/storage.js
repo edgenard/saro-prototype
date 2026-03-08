@@ -1,5 +1,7 @@
 import { SEED_USERS, SEED_LISTINGS } from '../data/seed.js'
 
+const SEED_VERSION = 'v5'
+
 // localStorage keys
 export const KEYS = {
   USERS: 'saro_users',
@@ -11,14 +13,49 @@ export const KEYS = {
   SEEDED: 'saro_seeded',
 }
 
+function ensureListingSeedImages(listings) {
+  const seedListingsById = new Map(SEED_LISTINGS.map((listing) => [listing.id, listing]))
+  const mergedListings = listings.map((listing) => {
+    const seededListing = seedListingsById.get(listing.id)
+    if (!seededListing) return listing
+    return { ...listing, images: seededListing.images }
+  })
+
+  const existingIds = new Set(mergedListings.map((listing) => listing.id))
+  for (const seededListing of SEED_LISTINGS) {
+    if (!existingIds.has(seededListing.id)) mergedListings.push(seededListing)
+  }
+
+  return mergedListings
+}
+
 export function seedStorage() {
-  if (localStorage.getItem(KEYS.SEEDED)) return
-  localStorage.setItem(KEYS.USERS, JSON.stringify(SEED_USERS))
-  localStorage.setItem(KEYS.LISTINGS, JSON.stringify(SEED_LISTINGS))
-  localStorage.setItem(KEYS.SAVED, JSON.stringify({}))
-  localStorage.setItem(KEYS.INQUIRIES, JSON.stringify([]))
-  localStorage.setItem(KEYS.PREMIUM, JSON.stringify([]))
-  localStorage.setItem(KEYS.SEEDED, '1')
+  if (localStorage.getItem(KEYS.SEEDED) === SEED_VERSION) return
+
+  if (!localStorage.getItem(KEYS.USERS)) {
+    localStorage.setItem(KEYS.USERS, JSON.stringify(SEED_USERS))
+  }
+
+  if (!localStorage.getItem(KEYS.LISTINGS)) {
+    localStorage.setItem(KEYS.LISTINGS, JSON.stringify(SEED_LISTINGS))
+  } else {
+    const listings = JSON.parse(localStorage.getItem(KEYS.LISTINGS) || '[]')
+    localStorage.setItem(KEYS.LISTINGS, JSON.stringify(ensureListingSeedImages(listings)))
+  }
+
+  if (!localStorage.getItem(KEYS.SAVED)) {
+    localStorage.setItem(KEYS.SAVED, JSON.stringify({}))
+  }
+
+  if (!localStorage.getItem(KEYS.INQUIRIES)) {
+    localStorage.setItem(KEYS.INQUIRIES, JSON.stringify([]))
+  }
+
+  if (!localStorage.getItem(KEYS.PREMIUM)) {
+    localStorage.setItem(KEYS.PREMIUM, JSON.stringify([]))
+  }
+
+  localStorage.setItem(KEYS.SEEDED, SEED_VERSION)
 }
 
 // --- users ---
